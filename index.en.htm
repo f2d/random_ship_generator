@@ -1,0 +1,55 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Random spaceship sprite generator</title>
+	<link rel="shortcut icon" type="image/png" href="index.png">
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<script>
+	var	la = {
+			'drawing': 'Drawing in progress...'
+		,	'about': {
+				'header': 'About'
+			,	'lines': [
+					'How it works, in principle, is very simple.'
+				,	'For each sprite:'
+				,	'1. Prepare a small random palette of N colors.'
+				,	'2. Step over every pixel inside a sprite, picking random colors from palette with a chance to skip (keep background color).'
+				,	'3. Mirror every step (except uneven middle row).'
+				]
+			,	'links': 'Links and sources:'
+			}
+		,	'links': {
+				'en': 'Original (EN)'
+			,	'ru': 'Translated (RU)'
+			}
+		,	'checkboxes': {
+				'auto_redraw': 'Auto redraw on changes'
+			,	'auto_save': 'Auto save images'
+			,	'draw_frames': 'Also save draw process frames'
+			,	'transprent_bg': 'Transparent background'
+			,	'ver_symmetry': 'Vertical symmetry'
+			}
+		,	'inputs': {
+				'pixel_size': 'Pixel size'
+			,	'black_ratio': 'Black ratio, %'
+			,	'colors_per_sprite': 'Colors per sprite'
+			,	'sprite_width': 'Each sprite width'
+			,	'sprite_height': 'Each sprite height'
+			,	'sprites_per_row': 'Sprites per row'
+			,	'sprites_per_col': 'Sprites per column'
+			,	'canvas_max_width': 'Result image max width'
+			,	'canvas_max_height': 'Result image max height'
+			}
+		,	'buttons': {
+				'draw': 'Create image'
+			,	'save': 'Save image'
+			}
+		};
+	</script>
+	<script src="index.js"></script>
+</head>
+<body>
+	Loading page...
+</body>
+</html>

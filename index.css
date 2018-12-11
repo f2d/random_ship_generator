@@ -1,0 +1,65 @@
+html, section, img {
+	background-color: rgba(0,0,0, 0.1);
+}
+body {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+section {
+	display: inline-block;
+	/* margin: 0 auto; */
+	margin: 1em;
+	padding: 1em;
+	text-align: left;
+	vertical-align: top;
+}
+section div + div {
+	margin-top: 1em;
+}
+a {
+	color: #888;
+}
+a:hover {
+	color: #000;
+}
+img {
+	/* background-color: #000; */
+}
+img,
+canvas {
+	border: 1px solid #ddd;
+	/* box-shadow: 3px 3px rgba(0,0,0, 0.1); */
+}
+canvas {
+	position: relative;
+}
+canvas:hover {
+	border-color: #aaa;
+}
+.toggle::after {
+	content: ".";
+}
+.toggle::before {
+	display: inline-block;
+	border: 1px solid currentColor;
+	margin-right: 4px;
+	padding: 0;
+	width: 23px;
+	height: 23px;
+	line-height: 23px;
+	font-size: 22px;
+	font-family: monospace;
+	text-align: center;
+	vertical-align: middle;
+	content: "+";
+}
+.toggle.open::after {
+	content: ":";
+}
+.toggle.open::before {
+	content: "-";
+}
+.hid {
+	display: none;
+}
