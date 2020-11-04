@@ -615,7 +615,8 @@ var	container = delAllChildNodes(document.body)
 	}
 
 var	a = {
-		'en': 'https://medium.freecodecamp.org/how-to-create-generative-art-in-less-than-100-lines-of-code-d37f379859f'
+		'src': 'https://github.com/f2d/random_ship_generator'
+	,	'en': 'https://medium.freecodecamp.org/how-to-create-generative-art-in-less-than-100-lines-of-code-d37f379859f'
 	,	'ru': 'https://habr.com/company/pixonic/blog/429078/'
 	}
 ,	e = cre('section', container)
