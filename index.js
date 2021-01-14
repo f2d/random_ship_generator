@@ -25,6 +25,8 @@ var	URL_API = window.URL || window.webkitURL
 	// ,	'sprites_per_col': 30
 	,	'canvas_max_width': 1080
 	,	'canvas_max_height': 1080
+	,	'auto_redraw_max_width': 9999
+	,	'auto_redraw_max_height': 9999
 	}
 ,	MIN_0  = ['black_ratio']	//* <- else 1
 ,	MAX_99 = ['black_ratio']	//* <- else none
@@ -541,7 +543,8 @@ var	e = id('image');
 
 function updateSwitch(e) {
 	if (e) e.checked = checkbox[e.id || e.name] = !!e.checked;
-	if (checkbox.auto_redraw) draw();
+
+	autoRedraw();
 }
 
 function updateValue(e) {
@@ -557,7 +560,44 @@ var	w = param.canvas_width  = param.sprites_per_row * sprite_w
 ,	h = param.canvas_height = param.sprites_per_col * sprite_h
 	;
 	if (e = id('draw_size')) e.textContent = w + 'x' + h;
-	if (checkbox.auto_redraw) draw();
+
+	autoRedraw();
+}
+
+function autoRedraw() {
+	if (
+		checkbox.auto_redraw
+	&&	param.canvas_width  <= param.auto_redraw_max_width
+	&&	param.canvas_height <= param.auto_redraw_max_height
+	) {
+		draw();
+	}
+}
+
+function getLocalizedText(dict, key) {
+	return (dict[key] || key).replace(/\{(\w+)\}/g, replaceVarNameWithValue);
+}
+
+function replaceVarNameWithValue() {
+var	defaultText = '';
+
+	for (var i = 0, n = arguments.length; i < n; ++i) {
+	var	name = arguments[i];
+
+		if (name) {
+			if (typeof param[name] !== 'undefined') {
+				return param[name];
+			}
+
+			if (typeof window[name] !== 'undefined') {
+				return window[name];
+			}
+
+			defaultText = name;
+		}
+	}
+
+	return defaultText;
 }
 
 //* Runtime: prepare UI *------------------------------------------------------
@@ -572,7 +612,7 @@ var	container = delAllChildNodes(document.body)
 	,	t = cre('td', p)
 	,	n = cre('input', cre('td', p))
 		;
-		t.textContent = (la.checkboxes[i] || i) + ':';
+		t.textContent = getLocalizedText(la.checkboxes, i) + ':';
 		n.id = i;
 		n.type = 'checkbox';
 
@@ -589,7 +629,7 @@ var	container = delAllChildNodes(document.body)
 	,	t = cre('td', p)
 	,	n = cre('input', cre('td', p))
 		;
-		t.textContent = (la.inputs[i] || i) + ':';
+		t.textContent = getLocalizedText(la.inputs, i) + ':';
 		n.id = i;
 		n.type = 'number';
 
@@ -608,7 +648,7 @@ var	container = delAllChildNodes(document.body)
 		;
 		t.id = i + '_size';
 		b.id = i;
-		b.textContent = (la.buttons[i] || i);
+		b.textContent = getLocalizedText(la.buttons, i);
 		b.setAttribute('onclick', i + '()');
 
 		if (i == 'save') b.disabled = true;
